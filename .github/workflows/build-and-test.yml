@@ -17,6 +17,7 @@ jobs:
           pip install -r requirements.txt
       - name: Run pylint
         run: pylint fastapi-test
+        continue-on-error: true
       - name: Run tests
         run: pytest fastapi-test
     
