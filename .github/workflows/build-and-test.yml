@@ -23,4 +23,6 @@ jobs:
       - name: Run FastAPI
         working-directory: ./fastapi-test
         run: fastapi dev &
+      - name: Smoketest
+        run: curl http://127.0.0.1:8000
     
