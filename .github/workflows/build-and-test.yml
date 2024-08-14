@@ -20,4 +20,7 @@ jobs:
         continue-on-error: true
       - name: Run tests
         run: pytest fastapi-test
+      - name: Run FastAPI
+        working-directory: ./fastapi-test
+        run: fastapi dev &
     
