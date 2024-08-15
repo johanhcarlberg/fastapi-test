@@ -6,7 +6,7 @@ services:
       - "8080:80"
     healthcheck:
       test: curl --fail http://localhost:80
-      interval: 30s
+      interval: 5s
       timeout: 25s
-      retries: 5
-      start_period: 30s
+      retries: 10
+      start_period: 10s
