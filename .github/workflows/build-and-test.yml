@@ -29,12 +29,10 @@ jobs:
       - name: Smoketest
         run: curl http://127.0.0.1:8000
       - uses: actions/setup-node@v2
+      - name: Install newman
+        run:  npm install -g newman newman-reporter-htmlextra newman-reporter-ctrf-json
       - name: Run Postman Tests
-        run: | 
-          npm install newman
-          npm install newman-reporter-htmlextra
-          npm install newman-reporter-ctrf-json
-          newman run ./postman/fastapi-test.postman_collection.json -r "cli,junit,htmlextra,ctrf-json"
+        run: newman run ./postman/fastapi-test.postman_collection.json -r "cli,junit,htmlextra,ctrf-json"
       - name: Archive Postman test results
         uses: actions/upload-artifact@v4
         with:
