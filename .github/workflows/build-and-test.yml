@@ -3,6 +3,8 @@ run-name: Build and test triggered by ${{ github.actor }}
 on: [push, workflow_dispatch]
 jobs:
   build:
+    env:
+      IMAGE_NAME: ${{ github.repository }}
     runs-on: ubuntu-latest
     permissions:
       checks: write
@@ -23,9 +25,15 @@ jobs:
         continue-on-error: true
       - name: Run tests
         run: pytest fastapi-test --ctrf ctrf/pytest.json
-      - name: Run FastAPI
-        working-directory: ./fastapi-test
-        run: fastapi dev &
+      - name: Setup Docker builder
+        uses: docker/setup-buildx-action@v3
+      - name: Build Docker image
+        run: docker build -t fastapi-test .
+      - name: Run Docker Compose
+        run: docker compose up -d --wait
+      #- name: Run FastAPI
+        #working-directory: ./fastapi-test
+        #run: fastapi dev &
       - name: Smoketest
         run: curl http://127.0.0.1:8000
       - uses: actions/setup-node@v2
