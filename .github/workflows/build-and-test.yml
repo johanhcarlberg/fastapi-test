@@ -41,7 +41,9 @@ jobs:
           name: postman-results
           path: newman/
       - name: Publish CTRF results
-        run: npx github-actions-ctrf ctrf/*.json
+        run: |
+          npx merge-ctrf ctrf --output merged-ctrf.json
+          npx github-actions-ctrf ctrf/merged-ctrf.json
         if: always()
         
         
