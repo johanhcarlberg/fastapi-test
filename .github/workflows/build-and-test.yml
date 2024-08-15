@@ -35,7 +35,7 @@ jobs:
         #working-directory: ./fastapi-test
         #run: fastapi dev &
       - name: Smoketest
-        run: curl http://127.0.0.1:8000
+        run: curl http://127.0.0.1:8080
       - uses: actions/setup-node@v2
       - name: Install newman
         run:  npm install -g newman newman-reporter-htmlextra newman-reporter-ctrf-json
