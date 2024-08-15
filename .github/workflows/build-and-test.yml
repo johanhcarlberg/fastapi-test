@@ -30,7 +30,7 @@ jobs:
       - name: Build Docker image
         run: docker build -t fastapi-test .
       - name: Run Docker Compose
-        run: docker compose up
+        run: docker compose up -d --wait
       #- name: Run FastAPI
         #working-directory: ./fastapi-test
         #run: fastapi dev &
