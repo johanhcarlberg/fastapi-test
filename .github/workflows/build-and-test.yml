@@ -30,11 +30,7 @@ jobs:
         run: curl http://127.0.0.1:8000
       - uses: actions/setup-node@v2
       - name: Install newman
-        run:  npm install -g newman 
-      - name: Install html reporter
-        run: npm install -g newman-reporter-htmlextra
-      - name: Install ctrf reporter
-        run: npm install -g newman-reporter-ctrf-json
+        run:  npm install -g newman newman-reporter-htmlextra newman-reporter-ctrf-json
       - name: Run Postman Tests
         run: newman run ./postman/fastapi-test.postman_collection.json -r "cli,junit,htmlextra,ctrf-json"
       - name: Archive Postman test results
