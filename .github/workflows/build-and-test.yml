@@ -24,7 +24,10 @@ jobs:
         run: pylint fastapi-test --output=pylintresult --output-format=parseable
         continue-on-error: true
       - name: Add pylint results to summary
-        run:  awk '{if ($1 !~ /^(\*|-)|(Your)$/ && $1 !~ /^\s*$/) {{printf "|"$1"|"$2"|"} {for(i=4; i<NF;i++) {printf $i " "} printf $NF "|\n"}}}' pylintresult >> $GITHUB_STEP_SUMMARY
+        run:  |
+          echo "|File|Code|Description|" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          awk '{if ($1 !~ /^(\*|-)|(Your)$/ && $1 !~ /^\s*$/) {{printf "|"$1"|"$2"|"} {for(i=4; i<NF;i++) {printf $i " "} printf $NF "|\n"}}}' pylintresult >> $GITHUB_STEP_SUMMARY
       - name: Run tests
         run: pytest fastapi-test --ctrf ctrf/pytest.json
       - name: Setup Docker builder
