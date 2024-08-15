@@ -22,7 +22,7 @@ jobs:
         run: pylint fastapi-test
         continue-on-error: true
       - name: Run tests
-        run: pytest fastapi-test
+        run: pytest fastapi-test --ctrf ctrf/pytest.json
       - name: Run FastAPI
         working-directory: ./fastapi-test
         run: fastapi dev &
@@ -42,8 +42,8 @@ jobs:
           path: newman/
       - name: Publish CTRF results
         run: |
-          npx merge-ctrf ctrf --output merged-ctrf.json
-          npx github-actions-ctrf ctrf/merged-ctrf.json
+          npx merge-ctrf ./ctrf --output merged-ctrf.json
+          npx github-actions-ctrf ./ctrf/merged-ctrf.json
         if: always()
         
         
