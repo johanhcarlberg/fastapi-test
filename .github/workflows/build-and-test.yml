@@ -25,4 +25,16 @@ jobs:
         run: fastapi dev &
       - name: Smoketest
         run: curl http://127.0.0.1:8000
+      - uses: actions/setup-node@v2
+      - name: Run Postman Tests
+        run: | 
+          npm install newman
+          npm install newman-reporter-htmlextra
+          newman run ./postman/fastapi-test.postman_collection.json -r "cli,junit,htmlextra"
+      - name: Archive Postman test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: postman-results
+          path: newman/
+        
     
