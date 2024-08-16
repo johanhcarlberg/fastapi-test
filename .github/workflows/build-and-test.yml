@@ -56,6 +56,8 @@ jobs:
           npx merge-ctrf ./ctrf --output merged-ctrf.json
           npx github-actions-ctrf ./ctrf/merged-ctrf.json
         if: always()
+      - name: Run coverage.py
+        run: coverage run -m pytest fastapi-test
       - name: Add coverage to summary
         run:  coverage report | awk '{if ($0 !~ /^-.*/) {print "| " $1 " | " $2 " | " $3 " | " $4 " |"} else {print $0}}'
         
