@@ -59,7 +59,9 @@ jobs:
       - name: Run coverage.py
         run: coverage run -m pytest fastapi-test
       - name: Add coverage to summary
-        run:  coverage report | awk '{if ($0 !~ /^-.*/) {print "| " $1 " | " $2 " | " $3 " | " $4 " |"} else {print $0}}'
+        run:  |
+          echo "# Code Coverage" >> $GITHUB_STEP_SUMMARY
+          coverage report | awk '{if ($0 !~ /^-.*/) {print "| " $1 " | " $2 " | " $3 " | " $4 " |"} else {print $0}}' >> $GITHUB_STEP_SUMMARY
         
         
     
