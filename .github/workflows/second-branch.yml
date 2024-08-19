@@ -1,5 +1,5 @@
 name: Second branch workflow
-run-name: Second workflow triggered by ${{ github.actor }} on ${{github.base_ref}}
+run-name: Second workflow triggered by ${{ github.actor }} on ${{ github.ref_name }}
 on:
   push:
     branches:
@@ -15,7 +15,7 @@ jobs:
       pull-requests: write
     steps:
       - name: Display branch name
-        run: echo ${{github.base_ref}}
+        run: echo ${{ github.ref_name }}
         
         
     
