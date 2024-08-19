@@ -1,6 +1,10 @@
 name: Build and test
 run-name: Build and test triggered by ${{ github.actor }}
-on: [push, workflow_dispatch]
+on:
+  push:
+    branches:
+      - 'main'
+  workflow_dispatch:
 jobs:
   build:
     env:
