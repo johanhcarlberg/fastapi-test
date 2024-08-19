@@ -27,7 +27,7 @@ jobs:
         run:  |
           echo "| File | Code | Description |" >> $GITHUB_STEP_SUMMARY
           echo "| --- | --- | --- |" >> $GITHUB_STEP_SUMMARY
-          awk -F"[][{}]" 'match($0, /^.*\.py*/) {print "| " $1 " | " $2 " | " $3 " |"}' pylintresult
+          awk -F"[][{}]" 'match($0, /^.*\.py*/) {print "| " $1 " | " $2 " | " $3 " |"}' pylintresult >> $GITHUB_STEP_SUMMARY
       - name: Run tests
         run: pytest fastapi-test --ctrf ctrf/pytest.json
       - name: Setup Docker builder
