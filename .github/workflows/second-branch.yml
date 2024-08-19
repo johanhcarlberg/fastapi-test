@@ -1,8 +1,10 @@
 name: Second branch workflow
 run-name: Second workflow triggered by ${{ github.actor }}
-on: [push, workflow_dispatch]
-  branches:
-    - 'actions-second-branch-test'
+on:
+  push:
+    branches:
+      - 'actions-second-branch-test'
+  workflow_dispatch:
 jobs:
   build:
     env:
