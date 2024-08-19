@@ -1,0 +1,17 @@
+name: Build and test
+run-name: Build and test triggered by ${{ github.actor }}
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    env:
+      IMAGE_NAME: ${{ github.repository }}
+    runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      pull-requests: write
+    steps:
+      - name: Display branch name
+        run: echo ${{github.base_ref}}
+        
+        
+    
