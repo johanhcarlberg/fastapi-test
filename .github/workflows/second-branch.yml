@@ -1,4 +1,4 @@
-name: Build and test
+name: Second branch workflow
 run-name: Build and test triggered by ${{ github.actor }}
 on: [push, workflow_dispatch]
 jobs:
